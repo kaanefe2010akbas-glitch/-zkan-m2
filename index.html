@@ -10,24 +10,23 @@ body{
     margin:0;
     padding:0;
     background:#0b1c3d;
-    font-family: Arial, sans-serif;
+    font-family:Arial, sans-serif;
     overflow:hidden;
     text-align:center;
     color:white;
 }
 
-/* Mesaj Kutusu */
+/* Mesaj */
 .container{
     position:relative;
     z-index:10;
     margin-top:60px;
     padding:20px;
-    animation: fadeIn 3s ease-in-out;
+    animation:fadeIn 2s ease-in-out;
 }
 
 h1{
     font-size:40px;
-    margin-bottom:20px;
 }
 
 p{
@@ -37,25 +36,59 @@ p{
     font-size:18px;
 }
 
-/* Fotoğraf */
+/* Foto */
 img{
     width:250px;
     border-radius:20px;
     margin-top:20px;
     box-shadow:0 0 25px rgba(255,255,255,0.4);
-    animation: float 4s ease-in-out infinite;
 }
 
-/* Balonlar */
+/* Buton */
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#ff1a8c;
+}
+
+/* Büyük yazı */
+.bigText{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:70px;
+    font-weight:bold;
+    display:none;
+    animation:zoom 1s ease forwards;
+    z-index:100;
+}
+
+@keyframes zoom{
+    from{transform:translate(-50%,-50%) scale(0);}
+    to{transform:translate(-50%,-50%) scale(1);}
+}
+
+/* Balon */
 .balloon{
     position:absolute;
     bottom:-150px;
     width:60px;
     height:80px;
-    background:red;
     border-radius:50%;
-    animation: rise 10s linear infinite;
-    opacity:0.7;
+    animation:rise linear infinite;
+    opacity:0.8;
 }
 
 .balloon::after{
@@ -68,29 +101,33 @@ img{
     top:80px;
 }
 
-/* Animasyonlar */
 @keyframes rise{
     0%{transform:translateY(0);}
     100%{transform:translateY(-120vh);}
+}
+
+/* Konfeti */
+.confetti{
+    position:fixed;
+    top:-20px;
+    font-size:30px;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh);}
 }
 
 @keyframes fadeIn{
     from{opacity:0;}
     to{opacity:1;}
 }
-
-@keyframes float{
-    0%{transform:translateY(0px);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0px);}
-}
 </style>
 </head>
 
 <body>
 
-<!-- MÜZİK -->
-<audio autoplay loop>
+<audio id="music" loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
 
@@ -103,19 +140,37 @@ naz bugün doğum günün sana büyük bir hediye hazırlayamadım ama bu siteyi
 
 <img src="naz.jpg" alt="Naz">
 
+<br>
+<button onclick="startParty()">Doğum Gününü Kutla 🎉</button>
 </div>
 
-<!-- BALONLAR -->
+<div class="bigText" id="bigText">İYİ Kİ DOĞDUNNNNN 💙🎂🎉</div>
+
 <script>
-for(let i=0;i<20;i++){
+/* Balon üret */
+for(let i=0;i<25;i++){
     let balloon=document.createElement("div");
     balloon.className="balloon";
     balloon.style.left=Math.random()*100+"%";
-    balloon.style.backgroundColor=
-    "hsl("+Math.random()*360+",70%,60%)";
-    balloon.style.animationDuration=
-    (6+Math.random()*5)+"s";
+    balloon.style.backgroundColor="hsl("+Math.random()*360+",70%,60%)";
+    balloon.style.animationDuration=(6+Math.random()*5)+"s";
     document.body.appendChild(balloon);
+}
+
+/* Parti başlat */
+function startParty(){
+    document.getElementById("music").play();
+
+    document.getElementById("bigText").style.display="block";
+
+    for(let i=0;i<50;i++){
+        let conf=document.createElement("div");
+        conf.className="confetti";
+        conf.innerHTML=Math.random()>0.5?"🎉":"🎂";
+        conf.style.left=Math.random()*100+"%";
+        conf.style.animationDuration=(2+Math.random()*3)+"s";
+        document.body.appendChild(conf);
+    }
 }
 </script>
 
