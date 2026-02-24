@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naz 💙</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#0b1c3d;
+    font-family: Arial, sans-serif;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+}
+
+/* Mesaj Kutusu */
+.container{
+    position:relative;
+    z-index:10;
+    margin-top:60px;
+    padding:20px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* Fotoğraf */
+img{
+    width:250px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.4);
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Balonlar */
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    width:60px;
+    height:80px;
+    background:red;
+    border-radius:50%;
+    animation: rise 10s linear infinite;
+    opacity:0.7;
+}
+
+.balloon::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:60px;
+    background:white;
+    left:50%;
+    top:80px;
+}
+
+/* Animasyonlar */
+@keyframes rise{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-120vh);}
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MÜZİK -->
+<audio autoplay loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+<h1>İYİ Kİ DOĞDUN NAZ 💙</h1>
+
+<p>
+naz bugün doğum günün sana büyük bir hediye hazırlayamadım ama bu siteyi tasarladım ben bigün gitsem bile bu site ve dahası gelicek siteler yada uygulamalar hep kalıcak buda ufak fragman olsun özür dilerim sana layık bir hediye yapamadım 16 yıl önce dünyaya geldiğinde bazı kişilerin hayatını düzelticeğin aklına gelmezdi belkiii amaa şuan öyle ve iyiki doğdunnnn balım senle geçen her saniyeye şükür ediyorum ne yaşarsak yaşayalım ne olursa olsun seni seviyorum balım ve dikkat çekmek isterim arka plan lacivert tek eksik orda yıldızlar ama tüm yıldızlar sendee o yüzden ekleyemedim özür dilerim neyse bu ayı seni seviyor veee yarım kalan şeyler var hikayemiz dizimiz yapıcaklarımız ve bunu tamamlama zamanı ve tekrardan iiyyiikiiiii dddoooğğğddduunnnn kıskanç kadınım
+</p>
+
+<img src="naz.jpg" alt="Naz">
+
+</div>
+
+<!-- BALONLAR -->
+<script>
+for(let i=0;i<20;i++){
+    let balloon=document.createElement("div");
+    balloon.className="balloon";
+    balloon.style.left=Math.random()*100+"%";
+    balloon.style.backgroundColor=
+    "hsl("+Math.random()*360+",70%,60%)";
+    balloon.style.animationDuration=
+    (6+Math.random()*5)+"s";
+    document.body.appendChild(balloon);
+}
+</script>
+
+</body>
+</html>
