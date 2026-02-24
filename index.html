@@ -3,110 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naz 💙</title>
+<title>Naz • 16</title>
 
 <style>
 body{
     margin:0;
-    padding:0;
-    background:#0b1c3d;
-    font-family:Arial, sans-serif;
-    overflow:hidden;
-    text-align:center;
+    font-family:'Segoe UI',sans-serif;
+    background:#0b1c2d;
     color:white;
+    text-align:center;
+    overflow-x:hidden;
 }
 
-.container{
-    margin-top:60px;
-    padding:20px;
+/* Arka plan süs efekt */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle at 20% 30%, rgba(77,166,255,0.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(77,166,255,0.1), transparent 40%);
+    animation:moveBg 15s infinite alternate linear;
+    z-index:-1;
 }
 
-h1{
-    font-size:40px;
+@keyframes moveBg{
+    from{transform:translate(-5%,-5%);}
+    to{transform:translate(5%,5%);}
 }
 
-p{
-    max-width:800px;
-    margin:auto;
-    line-height:1.7;
-    font-size:18px;
+.hero{
+    padding:100px 20px 40px 20px;
 }
 
-img{
-    width:250px;
+.name{
+    font-size:75px;
+    color:#4da6ff;
+    text-shadow:0 0 25px #4da6ff,0 0 60px #1a75ff;
+}
+
+.photo img{
+    width:260px;
     border-radius:20px;
+    box-shadow:0 0 30px rgba(77,166,255,0.7);
     margin-top:20px;
-    box-shadow:0 0 25px rgba(255,255,255,0.4);
+    transition:0.4s;
+}
+
+.photo img:hover{
+    transform:scale(1.05);
+}
+
+.message{
+    max-width:850px;
+    margin:40px auto;
+    font-size:18px;
+    line-height:1.9;
+    padding:0 20px;
 }
 
 button{
-    margin-top:30px;
     padding:15px 30px;
-    font-size:18px;
+    margin:20px;
+    background:#1a75ff;
     border:none;
     border-radius:30px;
-    background:#ff4da6;
     color:white;
+    font-size:17px;
     cursor:pointer;
+    transition:0.3s;
 }
 
-/* Balon */
-.balloon{
+button:hover{
+    background:#4da6ff;
+    transform:scale(1.05);
+}
+
+/* Sürpriz ekran */
+#surprise{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000814;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+    overflow:hidden;
+}
+
+.bigText{
+    font-size:65px;
+    color:#4da6ff;
+    text-shadow:0 0 40px #4da6ff;
+}
+
+.confetti{
     position:absolute;
-    bottom:-150px;
-    width:60px;
-    height:80px;
-    border-radius:50%;
-    animation:rise linear infinite;
-    opacity:0.8;
+    width:12px;
+    height:12px;
+    animation:fall 3s linear infinite;
 }
 
-@keyframes rise{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-120vh);}
+@keyframes fall{
+    from{transform:translateY(-100px) rotate(0deg);}
+    to{transform:translateY(100vh) rotate(360deg);}
+}
+
+.cake{
+    position:absolute;
+    font-size:35px;
+    animation:fall 4s linear infinite;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MÜZİK -->
-<audio id="music" loop>
+<!-- 🎵 Müzik -->
+<audio id="bgMusic" autoplay loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container">
-<h1>İYİ Kİ DOĞDUN NAZ 💙</h1>
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.2;
 
-<p>
-naz bugün doğum günün sana büyük bir hediye hazırlayamadım ama bu siteyi tasarladım ben bigün gitsem bile bu site ve dahası gelicek siteler yada uygulamalar hep kalıcak buda ufak fragman olsun özür dilerim sana layık bir hediye yapamadım 16 yıl önce dünyaya geldiğinde bazı kişilerin hayatını düzelticeğin aklına gelmezdi belkiii amaa şuan öyle ve iyiki doğdunnnn balım senle geçen her saniyeye şükür ediyorum ne yaşarsak yaşayalım ne olursa olsun seni seviyorum balım ve dikkat çekmek isterim arka plan lacivert tek eksik orda yıldızlar ama tüm yıldızlar sendee o yüzden ekleyemedim özür dilerim neyse bu ayı seni seviyor veee yarım kalan şeyler var hikayemiz dizimiz yapıcaklarımız ve bunu tamamlama zamanı ve tekrardan iiyyiikiiiii dddoooğğğddduunnnn kıskanç kadınım
-</p>
+/* Otomatik başlatmayı zorla */
+window.addEventListener("load", () => {
+    const playPromise = music.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            document.body.addEventListener("click", () => music.play(), { once: true });
+        });
+    }
+});
+</script>
 
-<img src="naz.jpg" alt="Naz">
+<div class="hero">
+    <div class="name">Naz • 16</div>
 
-<br>
-<button onclick="startParty()">Doğum Gününü Başlat 🎉</button>
+    <div class="photo">
+        <img src="naz.jpg" alt="Naz">
+    </div>
+</div>
+
+<div class="message">
+Naz bugün doğum günün. Sana büyük bir hediye hazırlayamadım ama bu siteyi tasarladım.  
+Küçük birşey oldu özür dilerim ama bir gün ben gitsem bile bu site kalacak.  
+Ve bundan sonra yapacağım siteler, uygulamalar… hepsi birer fragman olsun.  
+
+Özür dilerim sana layık bir hediye yapamadım 
+
+16 yıl önce dünyaya geldiğinde bazı insanların hayatını değiştireceğin aklına gelmezdi belki ama şu an öyle.  
+İyi ki doğdun balım.  
+
+Seninle geçen her saniyeye şükür ediyorum.  
+Ne yaşarsak yaşayalım, ne olursa olsun seni seviyorum.  
+
+Arka plan lacivert, tek eksik yıldızlar ama aslında hepsi sende olduğu için eklemedim.  
+
+Yarım kalan şeyler var…  
+Hikayemiz, dizimiz, yapacaklarımız.  
+Ve bunları tamamlama zamanı.  
+
+Tekrardan iyiiiiiikkkiiii dooğğdduunnnn kıskanç kadınım 💙
+</div>
+
+<button onclick="patlat()">PATLAT 🎉</button>
+
+<div id="surprise">
+    <div class="bigText">İYİ Kİ DOĞDUN NAZ 🎉</div>
 </div>
 
 <script>
+function patlat(){
+    const s = document.getElementById("surprise");
+    s.style.display="flex";
 
-/* İlk tıklamada müzik başlat */
-document.body.addEventListener("click", function(){
-    document.getElementById("music").play();
-},{ once:true });
+    for(let i=0;i<130;i++){
+        let conf = document.createElement("div");
+        conf.className="confetti";
+        conf.style.left=Math.random()*100+"vw";
+        conf.style.background=["#ff4d4d","#4da6ff","#ffff66","#66ffcc","#ff66ff"][Math.floor(Math.random()*5)];
+        conf.style.animationDuration=(Math.random()*3+2)+"s";
+        s.appendChild(conf);
+    }
 
-/* Balon üret */
-for(let i=0;i<25;i++){
-    let balloon=document.createElement("div");
-    balloon.className="balloon";
-    balloon.style.left=Math.random()*100+"%";
-    balloon.style.backgroundColor="hsl("+Math.random()*360+",70%,60%)";
-    balloon.style.animationDuration=(6+Math.random()*5)+"s";
-    document.body.appendChild(balloon);
-}
-
-function startParty(){
-    alert("İYİ Kİ DOĞDUNNNNN 💙🎉🎂");
+    for(let i=0;i<30;i++){
+        let cake=document.createElement("div");
+        cake.className="cake";
+        cake.innerHTML="🎂";
+        cake.style.left=Math.random()*100+"vw";
+        cake.style.animationDuration=(Math.random()*4+3)+"s";
+        s.appendChild(cake);
+    }
 }
 </script>
 
