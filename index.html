@@ -16,13 +16,9 @@ body{
     color:white;
 }
 
-/* Mesaj */
 .container{
-    position:relative;
-    z-index:10;
     margin-top:60px;
     padding:20px;
-    animation:fadeIn 2s ease-in-out;
 }
 
 h1{
@@ -36,7 +32,6 @@ p{
     font-size:18px;
 }
 
-/* Foto */
 img{
     width:250px;
     border-radius:20px;
@@ -44,7 +39,6 @@ img{
     box-shadow:0 0 25px rgba(255,255,255,0.4);
 }
 
-/* Buton */
 button{
     margin-top:30px;
     padding:15px 30px;
@@ -54,30 +48,6 @@ button{
     background:#ff4da6;
     color:white;
     cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.1);
-    background:#ff1a8c;
-}
-
-/* Büyük yazı */
-.bigText{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:70px;
-    font-weight:bold;
-    display:none;
-    animation:zoom 1s ease forwards;
-    z-index:100;
-}
-
-@keyframes zoom{
-    from{transform:translate(-50%,-50%) scale(0);}
-    to{transform:translate(-50%,-50%) scale(1);}
 }
 
 /* Balon */
@@ -91,42 +61,16 @@ button:hover{
     opacity:0.8;
 }
 
-.balloon::after{
-    content:"";
-    position:absolute;
-    width:2px;
-    height:60px;
-    background:white;
-    left:50%;
-    top:80px;
-}
-
 @keyframes rise{
     0%{transform:translateY(0);}
     100%{transform:translateY(-120vh);}
-}
-
-/* Konfeti */
-.confetti{
-    position:fixed;
-    top:-20px;
-    font-size:30px;
-    animation:fall 3s linear forwards;
-}
-
-@keyframes fall{
-    to{transform:translateY(110vh);}
-}
-
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- MÜZİK -->
 <audio id="music" loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
@@ -141,12 +85,16 @@ naz bugün doğum günün sana büyük bir hediye hazırlayamadım ama bu siteyi
 <img src="naz.jpg" alt="Naz">
 
 <br>
-<button onclick="startParty()">Doğum Gününü Kutla 🎉</button>
+<button onclick="startParty()">Doğum Gününü Başlat 🎉</button>
 </div>
 
-<div class="bigText" id="bigText">İYİ Kİ DOĞDUNNNNN 💙🎂🎉</div>
-
 <script>
+
+/* İlk tıklamada müzik başlat */
+document.body.addEventListener("click", function(){
+    document.getElementById("music").play();
+},{ once:true });
+
 /* Balon üret */
 for(let i=0;i<25;i++){
     let balloon=document.createElement("div");
@@ -157,20 +105,8 @@ for(let i=0;i<25;i++){
     document.body.appendChild(balloon);
 }
 
-/* Parti başlat */
 function startParty(){
-    document.getElementById("music").play();
-
-    document.getElementById("bigText").style.display="block";
-
-    for(let i=0;i<50;i++){
-        let conf=document.createElement("div");
-        conf.className="confetti";
-        conf.innerHTML=Math.random()>0.5?"🎉":"🎂";
-        conf.style.left=Math.random()*100+"%";
-        conf.style.animationDuration=(2+Math.random()*3)+"s";
-        document.body.appendChild(conf);
-    }
+    alert("İYİ Kİ DOĞDUNNNNN 💙🎉🎂");
 }
 </script>
 
